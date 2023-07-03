@@ -59,7 +59,7 @@ export class AppComponent {
   }
 
   duplicateItem(subCategoryIndex: number, itemIndex: number) {
-    this.listItem(subCategoryIndex).push(this.listItem(subCategoryIndex).at(itemIndex));
+    this.listItem(subCategoryIndex).insert(itemIndex, this.listItem(subCategoryIndex).at(itemIndex));
   }
 
   deleteItem(subCategoryIndex: number, itemIndex: number) {
