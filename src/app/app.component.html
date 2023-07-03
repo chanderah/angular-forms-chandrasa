@@ -1,0 +1,47 @@
+<button (click)="getDataFromApi()">get data from Api</button>
+<button (click)="resetForm()">reset</button>
+
+<div [formGroup]="form">
+  <div>
+    <h1>Category Item</h1>
+    <input type="text" formControlName="itemGroup" placeholder="Item Group" />
+    <input type="text" formControlName="categoryItem" placeholder="Category Item" />
+    <input type="number" formControlName="categoryId" placeholder="Category ID" />
+  </div>
+  <div style="margin-left:50px">
+    <div>
+      <h3>Sub Category Item</h3>
+      <button (click)="addSubCategory()">add subCategory</button>
+    </div>
+    <div
+      [formGroup]="subCategory"
+      *ngFor="let subCategory of listSubCategory().controls; let i = index"
+      style="margin-top: 10px"
+    >
+      <span> subCategory index: {{ i }} </span>
+      <div>
+        <input type="text" formControlName="subCategoryItem" placeholder="Sub Category Item" />
+        <input type="number" formControlName="subCategoryId" placeholder="Sub Category Item ID" />
+        <button (click)="deleteSubCategory(i)">delete</button>
+      </div>
+
+      <button (click)="addItem(i)">add Item</button>
+      <div
+        [formGroup]="item"
+        *ngFor="let item of listItem(i).controls; let j = index"
+        style="margin-top: 10px; margin-left: 50px"
+      >
+        <span>item index: {{ j }}</span>
+        <div>
+          <input type="text" formControlName="itemType" placeholder="Type" />
+          <input type="text" formControlName="itemBrand" placeholder="Brand" />
+
+          <button (click)="duplicateItem(i, j)">duplicate</button>
+          <button (click)="deleteItem(i, j)">delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pre><br>result: {{ form.value | json }} </pre>
