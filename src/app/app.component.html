@@ -16,7 +16,7 @@
     <div
       [formGroup]="subCategory"
       *ngFor="let subCategory of listSubCategory().controls; let i = index"
-      style="margin-top: 10px"
+      style="margin:10px 0px"
     >
       <span> subCategory index: {{ i }} </span>
       <div>
@@ -25,19 +25,17 @@
         <button (click)="deleteSubCategory(i)">delete</button>
       </div>
 
-      <button (click)="addItem(i)">add Item</button>
-      <div
-        [formGroup]="item"
-        *ngFor="let item of listItem(i).controls; let j = index"
-        style="margin-top: 10px; margin-left: 50px"
-      >
-        <span>item index: {{ j }}</span>
-        <div>
-          <input type="text" formControlName="itemType" placeholder="Type" />
-          <input type="text" formControlName="itemBrand" placeholder="Brand" />
+      <div style="margin: 10px 50px">
+        <button (click)="addItem(i)">add Item</button>
+        <div [formGroup]="item" *ngFor="let item of listItem(i).controls; let j = index" style="margin:5px">
+          <span>item index: {{ j }}</span>
+          <div>
+            <input type="text" formControlName="itemType" placeholder="Type" />
+            <input type="text" formControlName="itemBrand" placeholder="Brand" />
 
-          <button (click)="duplicateItem(i, j)">duplicate</button>
-          <button (click)="deleteItem(i, j)">delete</button>
+            <button (click)="duplicateItem(i, j)">duplicate</button>
+            <button (click)="deleteItem(i, j)">delete</button>
+          </div>
         </div>
       </div>
     </div>
